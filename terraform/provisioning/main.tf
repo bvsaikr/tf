@@ -61,7 +61,8 @@ resource "aws_volume_attachment" "ebs_attach" {
   instance_id = aws_instance.os1forebsattachment.id
 }
  resource "null_resource" "torunconfigs" {
-depends_on[aws_volume_attachment.ebs_attach]  #explicitly mentioning order if we run without depends on terraform willuse its intelligence and runn which is not same as our requirement
+depends_on = [aws_volume_attachment.ebs_attach] 
+#explicitly mentioning order if we run without depends on terraform willuse its intelligence and runn which is not same as our requirement
 
     connection {
     type     = "ssh"
